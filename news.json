@@ -1,0 +1,69 @@
+[
+    {
+      "id": "bbc-news",
+      "name": "BBC News",
+      "author": "Jane Smith",
+      "title": "Another Important Event",
+      "description": "Details about another important event happening around the world.",
+      "url": "https://www.bbc.com/news/world/2024/important-event",
+      "urlToImage": "https://cdn.bbc.com/news/image/important-event.jpg",
+      "publishedAt": "2024-09-08T10:20:00Z",
+      "content": "This is the full article content for the important event happening globally."
+    },
+    {
+      "id": "cnn-news",
+      "name": "CNN News",
+      "author": "John Doe",
+      "title": "Global Market Update",
+      "description": "Latest updates on the global market trends.",
+      "url": "https://www.cnn.com/news/market/2024/global-update",
+      "urlToImage": "https://cdn.cnn.com/news/image/global-update.jpg",
+      "publishedAt": "2024-09-08T09:00:00Z",
+      "content": "Comprehensive details about the current global market conditions."
+    },
+    {
+      "id": "reuters",
+      "name": "Reuters",
+      "author": "Alice Johnson",
+      "title": "Tech Innovations of 2024",
+      "description": "A deep dive into the latest technology innovations of 2024.",
+      "url": "https://www.reuters.com/technology/2024/innovations",
+      "urlToImage": "https://cdn.reuters.com/news/image/tech-innovations.jpg",
+      "publishedAt": "2024-09-07T15:45:00Z",
+      "content": "Detailed analysis of the groundbreaking technology innovations emerging in 2024."
+    },
+    {
+      "id": "al-jazeera",
+      "name": "Al Jazeera",
+      "author": "Michael Nguyen",
+      "title": "Political Changes Worldwide",
+      "description": "An overview of recent political changes across the globe.",
+      "url": "https://www.aljazeera.com/news/2024/political-changes",
+      "urlToImage": "https://cdn.aljazeera.com/news/image/political-changes.jpg",
+      "publishedAt": "2024-09-07T13:00:00Z",
+      "content": "In-depth coverage of the significant political changes happening globally."
+    },
+    {
+      "id": "the-verge",
+      "name": "The Verge",
+      "author": "Chris Lee",
+      "title": "Gaming Industry Trends",
+      "description": "Latest trends in the gaming industry for 2024.",
+      "url": "https://www.theverge.com/gaming/2024/trends",
+      "urlToImage": "https://cdn.theverge.com/news/image/gaming-trends.jpg",
+      "publishedAt": "2024-09-06T11:30:00Z",
+      "content": "An overview of the emerging trends and changes in the gaming industry."
+    },
+    {
+      "id": "ny-times",
+      "name": "New York Times",
+      "author": "Emma Wilson",
+      "title": "Climate Change Impact",
+      "description": "Examining the effects of climate change in 2024.",
+      "url": "https://www.nytimes.com/environment/2024/climate-change",
+      "urlToImage": "https://cdn.nytimes.com/news/image/climate-impact.jpg",
+      "publishedAt": "2024-09-06T10:00:00Z",
+      "content": "Comprehensive report on the latest impacts of climate change observed worldwide."
+    }
+  ]
+  
