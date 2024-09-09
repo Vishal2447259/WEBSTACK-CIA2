@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Garage - Course List and Registration</title>
+    <style>
+
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        h2, h3 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+        input[type="text"], input[type="email"], input[type="password"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+            margin-bottom: 10px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+        .course-list {
+            margin-top: 20px;
+        }
+        .course-item {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .pagination button {
+            margin: 0 5px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Registration Form -->
+    <div class="container">
+        <h2>Car Garage - Sign Up</h2>
+        <div id="errorMessage" class="error"></div>
+        <form id="registrationForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter your full name">
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" placeholder="Enter a password">
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password">
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+
+    <!-- Course List Section -->
+    <div class="container">
+        <h3>Available Courses</h3>
+        <div>
+            <label for="sort">Sort By:</label>
+            <select id="sort">
+                <option value="title">Title</option>
+                <option value="price">Price</option>
+                <option value="duration">Duration</option>
+            </select>
+        </div>
+        <div class="course-list" id="courseList"></div>
+        <div class="pagination" id="pagination"></div>
+    </div>
+
+    <script>
+        // Registration Form Validation
+        document.getElementById('registrationForm').addEventListener('submit', function(e) {
+            e.preventDefault(); // Prevent form submission
+            
+            let name = document.getElementById('name').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let password = document.getElementById('password').value.trim();
+            let confirmPassword = document.getElementById('confirmPassword').value.trim();
+            let errorMessage = document.getElementById('errorMessage');
+
+            errorMessage.textContent = ''; // Clear previous error messages
+
+            if (name === '') {
+                errorMessage.textContent = 'Full Name is required.';
+                return;
+            }
+            if (email === '') {
+                errorMessage.textContent = 'Email is required.';
+                return;
+            }
+            if (!validateEmail(email)) {
+                errorMessage.textContent = 'Please enter a valid email address.';
+                return;
+            }
+            if (password === '') {
+                errorMessage.textContent = 'Password is required.';
+                return;
+            }
+            if (password.length < 6) {
+                errorMessage.textContent = 'Password must be at least 6 characters long.';
+                return;
+            }
+            if (password !== confirmPassword) {
+                errorMessage.textContent = 'Passwords do not match.';
+                return;
+            }
+
+            alert('Registration successful!');
+        });
+
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        // Fetch course data and display it
+        const coursesPerPage = 2;
+        let currentPage = 1;
+        let courses = [];
+
+        // Fetch course data from JSON (mocked API)
+        fetch('https://raw.githubusercontent.com/jerinkjoseph/JSON-file/main/courses.json')
+            .then(response => response.json())
+            .then(data => {
+                courses = data;
+                displayCourses();
+                setupPagination();
+            })
+            .catch(error => console.error('Error fetching course data:', error));
+
+        // Function to display courses based on pagination and sorting
+        function displayCourses() {
+            let sortedCourses = sortCourses(courses);
+            let paginatedCourses = paginateCourses(sortedCourses);
+            let courseList = document.getElementById('courseList');
+            courseList.innerHTML = '';
+
+            paginatedCourses.forEach(course => {
+                let courseItem = `
+                    <div class="course-item">
+                        <h4>${course.title}</h4>
+                        <p>${course.description}</p>
+                        <p>Duration: ${course.duration}</p>
+                        <p>Price: $${course.price}</p>
+                    </div>
+                `;
+                courseList.innerHTML += courseItem;
+            });
+        }
+
+        // Function to sort courses
+        function sortCourses(courses) {
+            let sortValue = document.getElementById('sort').value;
+            return courses.sort((a, b) => {
+                if (sortValue === 'price') {
+                    return a.price - b.price;
+                } else if (sortValue === 'duration') {
+                    return a.duration.localeCompare(b.duration);
+                } else {
+                    return a.title.localeCompare(b.title);
+                }
+            });
+        }
+
+        // Function to paginate courses
+        function paginateCourses(courses) {
+            let start = (currentPage - 1) * coursesPerPage;
+            let end = start + coursesPerPage;
+            return courses.slice(start, end);
+        }
+
+        // Setup pagination buttons
+        function setupPagination() {
+            let totalPages = Math.ceil(courses.length / coursesPerPage);
+            let pagination = document.getElementById('pagination');
+            pagination.innerHTML = '';
+
+            for (let i = 1; i <= totalPages; i++) {
+                let button = document.createElement('button');
+                button.textContent = i;
+                button.addEventListener('click', function() {
+                    currentPage = i;
+                    displayCourses();
+                });
+                pagination.appendChild(button);
+            }
+        }
+
+        // Handle sorting
+        document.getElementById('sort').addEventListener('change', displayCourses);
+    </script>
+</body>
+</html>

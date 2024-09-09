@@ -1,0 +1,45 @@
+[
+    {
+      "id": 1,
+      "title": "Basic Car Maintenance",
+      "description": "Learn how to maintain your car's health with essential tips.",
+      "duration": "2 weeks",
+      "price": 100
+    },
+    {
+      "id": 2,
+      "title": "Advanced Car Repairs",
+      "description": "Understand advanced car repair techniques and tools.",
+      "duration": "4 weeks",
+      "price": 200
+    },
+    {
+      "id": 3,
+      "title": "Engine Diagnostics",
+      "description": "Get skilled in diagnosing engine issues with modern equipment.",
+      "duration": "3 weeks",
+      "price": 150
+    },
+    {
+      "id": 4,
+      "title": "Hybrid and Electric Vehicle Repair",
+      "description": "Learn about repairing hybrid and electric vehicles.",
+      "duration": "5 weeks",
+      "price": 250
+    },
+    {
+      "id": 5,
+      "title": "Car Detailing Techniques",
+      "description": "Master the art of car detailing to make vehicles shine.",
+      "duration": "1 week",
+      "price": 80
+    },
+    {
+      "id": 6,
+      "title": "Automotive Painting",
+      "description": "Explore painting techniques for a professional finish.",
+      "duration": "3 weeks",
+      "price": 180
+    }
+  ]
+  
